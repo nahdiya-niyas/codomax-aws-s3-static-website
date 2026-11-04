@@ -1,197 +1,45 @@
-
-sudo tee /var/www/html/index.html > /dev/null <<'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AWS Cloud Deployment | Project Showcase</title>
+  <meta name="theme-color" content="#091425">
+  <meta name="description" content="Amazon S3 and AWS Amplify static website deployment project for Codomax AWS Cloud & DevOps Internship Module 03.">
+  <title>Amazon S3 Deployment | Cloud Project Showcase</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b1120;
-      color: #e5e7eb;
-      line-height: 1.7;
-    }
-    .container {
-      max-width: 1050px;
-      margin: auto;
-      padding: 0 24px;
-    }
-    header {
-      padding: 24px 0;
-      border-bottom: 1px solid #273449;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    .brand { font-weight: bold; color: #f59e0b; }
-    .tag {
-      color: #93c5fd;
-      font-size: 13px;
-    }
-    .hero { padding: 85px 0 70px; }
-    .eyebrow {
-      color: #fbbf24;
-      letter-spacing: 2px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    h1 {
-      font-size: clamp(35px, 6vw, 60px);
-      line-height: 1.15;
-      margin: 15px 0;
-      color: #fff;
-    }
-    h1 span { color: #f59e0b; }
-    .lead {
-      max-width: 700px;
-      color: #aab6ca;
-      font-size: 17px;
-    }
-    .button {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 12px 22px;
-      border-radius: 8px;
-      background: #f59e0b;
-      color: #111827;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section { padding: 40px 0; }
-    h2 { color: white; font-size: 27px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 25px;
-    }
-    .card {
-      background: #151f32;
-      border: 1px solid #2a3952;
-      border-radius: 12px;
-      padding: 23px;
-    }
-    .card h3 { color: #fbbf24; margin-top: 0; }
-    .card p { color: #b1bfd3; }
-    .flow {
-      padding: 25px;
-      border-radius: 12px;
-      background: #151f32;
-      border: 1px solid #2a3952;
-      text-align: center;
-      font-weight: bold;
-      color: #93c5fd;
-    }
-    .steps { color: #b1bfd3; }
-    .steps li { margin: 12px 0; }
-    footer {
-      margin-top: 45px;
-      padding: 30px 0;
-      border-top: 1px solid #273449;
-      color: #94a3b8;
-      text-align: center;
-      font-size: 13px;
-    }
+    :root{color-scheme:dark;--bg:#091425;--panel:#111f32;--line:#263a50;--text:#eaf1f9;--muted:#a8bad0;--accent:#ffad38;--teal:#5ce1c6}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#183450 0%,var(--bg) 48%);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit} .container{max-width:1070px;margin:auto;padding:0 24px}
+    header{border-bottom:1px solid var(--line);background:#0b1727d9}nav{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding:20px 0}.brand{font-weight:850;letter-spacing:.08em;color:var(--accent)}.nav-note{font-size:13px;color:var(--muted)}
+    .hero{padding:88px 0 74px}.eyebrow{color:var(--teal);font-weight:750;text-transform:uppercase;letter-spacing:.18em;font-size:12px}.hero h1{font-size:clamp(40px,6.4vw,70px);max-width:860px;line-height:1.11;letter-spacing:-.04em;margin:18px 0}.hero h1 span{color:var(--accent)}.lead{max-width:760px;color:var(--muted);font-size:18px}.pills{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}.pill{border:1px solid #35516b;border-radius:40px;padding:5px 13px;font-size:13px;color:#cae4f3}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.btn{display:inline-block;text-decoration:none;font-weight:750;padding:12px 20px;border-radius:9px;background:var(--accent);color:#17202d}.btn.secondary{background:transparent;color:var(--text);border:1px solid #54718d}
+    section{padding:38px 0}.section-kicker{color:var(--teal);font-size:12px;font-weight:750;letter-spacing:.15em;text-transform:uppercase}h2{font-size:clamp(25px,4vw,34px);line-height:1.25;margin:8px 0 12px}.intro{color:var(--muted);max-width:790px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:25px}.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:22px}.card .num{color:var(--teal);font-size:13px;font-weight:800}.card h3{color:var(--accent);margin:10px 0;font-size:19px}.card p{color:var(--muted);margin:0;font-size:14px}
+    .architecture{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 20px;text-align:center;margin-top:24px}.node{display:inline-block;padding:13px 23px;background:#193b51;border:1px solid #4790a0;border-radius:9px;color:#eafffb;font-weight:750}.node.s3{background:#3b2d1b;border-color:#c48a2f;color:#ffdfa2}.arrow{display:block;color:var(--accent);font-size:26px;line-height:1.6}.arch-label{color:var(--muted);font-size:13px;margin:12px auto 0;max-width:650px}
+    .steps{counter-reset:step;list-style:none;padding:0;display:grid;gap:12px}.steps li{counter-increment:step;background:var(--panel);border:1px solid var(--line);padding:16px 18px;border-radius:10px;color:var(--muted)}.steps li:before{content:counter(step,decimal-leading-zero);color:var(--accent);font-weight:850;margin-right:14px}.notice{border-left:3px solid var(--accent);background:#16263a;padding:17px 20px;border-radius:5px;color:var(--muted)}footer{border-top:1px solid var(--line);padding:29px 0;margin-top:46px;color:var(--muted);font-size:13px;text-align:center}
+    @media(max-width:600px){.hero{padding:58px 0 40px}.container{padding:0 18px}.lead{font-size:16px}.architecture{padding:22px 12px}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <div class="brand">AWS CLOUD LAB</div>
-        <div class="tag">CODOMAX INTERNSHIP · MODULE 02</div>
-      </nav>
-    </div>
-  </header>
-
+  <header><div class="container"><nav><div class="brand">AWS CLOUD LAB</div><div class="nav-note">CODOMAX INTERNSHIP · MODULE 03</div></nav></div></header>
   <main class="container">
-    <div class="hero">
-      <div class="eyebrow">CLOUD ENGINEERING PROJECT</div>
-      <h1>Deploying to the <span>AWS Cloud.</span></h1>
-      <p class="lead">
-        A hands-on cloud deployment demonstrating how to
-        provision an Amazon EC2 instance, configure network
-        security, manage a Linux server, and host a website
-        using Apache HTTP Server.
-      </p>
-      <a class="button"
-         href="https://github.com/nahdiya-niyas/codomax-aws-iam-ec2"
-         target="_blank" rel="noopener noreferrer">
-        View Project on GitHub
-      </a>
-    </div>
-
-    <section>
-      <h2>Technologies & Services</h2>
+    <section class="hero">
+      <div class="eyebrow">Cloud storage · Static web hosting · HTTPS</div>
+      <h1>Static websites, <span>cloud-first.</span></h1>
+      <p class="lead">A hands-on AWS cloud project: storing a static website in Amazon S3 and publishing it securely over HTTPS through AWS Amplify Hosting—without managing a virtual server.</p>
+      <div class="pills"><span class="pill">Amazon S3</span><span class="pill">AWS Amplify</span><span class="pill">HTML &amp; CSS</span><span class="pill">Bucket Policies</span><span class="pill">HTTPS</span></div>
+      <div class="actions"><a class="btn" href="https://github.com/nahdiya-niyas/codomax-aws-s3-static-website" target="_blank" rel="noopener noreferrer">Explore GitHub Repository ↗</a><a class="btn secondary" href="#architecture">View Architecture ↓</a></div>
+    </section>
+    <section id="services"><div class="section-kicker">Technology stack</div><h2>Services behind the deployment</h2><p class="intro">Each service has a clear purpose. S3 stores the files; Amplify handles HTTPS website delivery.</p>
       <div class="grid">
-        <div class="card">
-          <h3>Amazon EC2</h3>
-          <p>Cloud-based Linux virtual server using a
-          t3.micro instance.</p>
-        </div>
-        <div class="card">
-          <h3>AWS IAM</h3>
-          <p>Explored roles, users, policies and
-          least-privilege access principles.</p>
-        </div>
-        <div class="card">
-          <h3>Security Groups</h3>
-          <p>Configured inbound rules for HTTP and
-          restricted SSH access.</p>
-        </div>
-        <div class="card">
-          <h3>Apache & Linux</h3>
-          <p>Installed and configured Apache on
-          Amazon Linux 2023.</p>
-        </div>
+        <div class="card"><div class="num">01 / STORAGE</div><h3>Amazon S3</h3><p>Stores the static <code>index.html</code> file as an object in a cloud bucket.</p></div>
+        <div class="card"><div class="num">02 / HOSTING</div><h3>AWS Amplify</h3><p>Publishes the website from S3 with an HTTPS-enabled <code>amplifyapp.com</code> address.</p></div>
+        <div class="card"><div class="num">03 / ACCESS</div><h3>Bucket Policies</h3><p>Controls access to stored objects. The original S3 website endpoint was configured for public read access.</p></div>
+        <div class="card"><div class="num">04 / FRONTEND</div><h3>HTML + CSS</h3><p>Creates a responsive static project page without a backend or database.</p></div>
       </div>
     </section>
-
-    <section>
-      <h2>Deployment Architecture</h2>
-      <div class="flow">
-        Internet Users &rarr; HTTP Port 80
-        &rarr; EC2 Instance &rarr; Apache Web Server
-        &rarr; HTML Website
-      </div>
-    </section>
-
-    <section>
-      <h2>Implementation Workflow</h2>
-      <ol class="steps">
-        <li>Explored AWS IAM and cloud permissions.</li>
-        <li>Provisioned an Amazon Linux 2023 EC2 instance.</li>
-        <li>Configured HTTP and restricted SSH access.</li>
-        <li>Connected to the instance using EC2 Instance Connect.</li>
-        <li>Installed and started Apache HTTP Server.</li>
-        <li>Deployed and tested a static HTML website.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>Project Outcome</h2>
-      <p class="lead">
-        Successfully deployed a static website on an AWS
-        EC2 Linux instance. This project builds a foundation
-        for future work involving cloud storage, networking,
-        databases, serverless applications, and CI/CD.
-      </p>
-    </section>
+    <section id="architecture"><div class="section-kicker">Architecture</div><h2>How this website is delivered</h2><div class="architecture"><div class="node">Visitors · HTTPS</div><span class="arrow">↓</span><div class="node">AWS Amplify Hosting</div><span class="arrow">↑</span><div class="node s3">Amazon S3 · index.html</div><p class="arch-label">The site files are stored in S3. Amplify deploys the S3 content and serves the published website over HTTPS.</p></div></section>
+    <section><div class="section-kicker">Deployment workflow</div><h2>What I implemented</h2><ol class="steps"><li>Created a general-purpose S3 bucket in the Asia Pacific (Sydney) Region.</li><li>Uploaded the static website's <code>index.html</code> file.</li><li>Enabled S3 static website hosting and configured an index document.</li><li>Configured public-read access for the original S3 website endpoint.</li><li>Deployed the S3 website using AWS Amplify Hosting for HTTPS access.</li><li>Verified the live deployment and documented the process in GitHub.</li></ol></section>
+    <section><div class="section-kicker">Key learning</div><h2>EC2 vs. S3 hosting</h2><p class="intro">In Module 02, I hosted a website on Amazon EC2 by installing Apache on a Linux virtual machine. In Module 03, I learned that a static website can be stored in Amazon S3 and published through AWS Amplify—without managing a server.</p><div class="notice"><strong>Project scope:</strong> This is a static website demonstration, not a full-stack application. It does not handle accounts, databases, or server-side business logic.</div></section>
   </main>
-
-  <footer>
-    <div class="container">
-      AWS Cloud & DevOps Internship 2026 · Codomax Module 02
-    </div>
-  </footer>
+  <footer><div class="container">Codomax Digital Solutions · AWS Cloud &amp; DevOps Internship 2026 · Module 03</div></footer>
 </body>
 </html>
-EOF

@@ -1,0 +1,197 @@
+
+sudo tee /var/www/html/index.html > /dev/null <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Cloud Deployment | Project Showcase</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1120;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 0 24px;
+    }
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid #273449;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .brand { font-weight: bold; color: #f59e0b; }
+    .tag {
+      color: #93c5fd;
+      font-size: 13px;
+    }
+    .hero { padding: 85px 0 70px; }
+    .eyebrow {
+      color: #fbbf24;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    h1 {
+      font-size: clamp(35px, 6vw, 60px);
+      line-height: 1.15;
+      margin: 15px 0;
+      color: #fff;
+    }
+    h1 span { color: #f59e0b; }
+    .lead {
+      max-width: 700px;
+      color: #aab6ca;
+      font-size: 17px;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 22px;
+      border-radius: 8px;
+      background: #f59e0b;
+      color: #111827;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section { padding: 40px 0; }
+    h2 { color: white; font-size: 27px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .card {
+      background: #151f32;
+      border: 1px solid #2a3952;
+      border-radius: 12px;
+      padding: 23px;
+    }
+    .card h3 { color: #fbbf24; margin-top: 0; }
+    .card p { color: #b1bfd3; }
+    .flow {
+      padding: 25px;
+      border-radius: 12px;
+      background: #151f32;
+      border: 1px solid #2a3952;
+      text-align: center;
+      font-weight: bold;
+      color: #93c5fd;
+    }
+    .steps { color: #b1bfd3; }
+    .steps li { margin: 12px 0; }
+    footer {
+      margin-top: 45px;
+      padding: 30px 0;
+      border-top: 1px solid #273449;
+      color: #94a3b8;
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">AWS CLOUD LAB</div>
+        <div class="tag">CODOMAX INTERNSHIP · MODULE 02</div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <div class="eyebrow">CLOUD ENGINEERING PROJECT</div>
+      <h1>Deploying to the <span>AWS Cloud.</span></h1>
+      <p class="lead">
+        A hands-on cloud deployment demonstrating how to
+        provision an Amazon EC2 instance, configure network
+        security, manage a Linux server, and host a website
+        using Apache HTTP Server.
+      </p>
+      <a class="button"
+         href="https://github.com/nahdiya-niyas/codomax-aws-iam-ec2"
+         target="_blank" rel="noopener noreferrer">
+        View Project on GitHub
+      </a>
+    </div>
+
+    <section>
+      <h2>Technologies & Services</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Amazon EC2</h3>
+          <p>Cloud-based Linux virtual server using a
+          t3.micro instance.</p>
+        </div>
+        <div class="card">
+          <h3>AWS IAM</h3>
+          <p>Explored roles, users, policies and
+          least-privilege access principles.</p>
+        </div>
+        <div class="card">
+          <h3>Security Groups</h3>
+          <p>Configured inbound rules for HTTP and
+          restricted SSH access.</p>
+        </div>
+        <div class="card">
+          <h3>Apache & Linux</h3>
+          <p>Installed and configured Apache on
+          Amazon Linux 2023.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Deployment Architecture</h2>
+      <div class="flow">
+        Internet Users &rarr; HTTP Port 80
+        &rarr; EC2 Instance &rarr; Apache Web Server
+        &rarr; HTML Website
+      </div>
+    </section>
+
+    <section>
+      <h2>Implementation Workflow</h2>
+      <ol class="steps">
+        <li>Explored AWS IAM and cloud permissions.</li>
+        <li>Provisioned an Amazon Linux 2023 EC2 instance.</li>
+        <li>Configured HTTP and restricted SSH access.</li>
+        <li>Connected to the instance using EC2 Instance Connect.</li>
+        <li>Installed and started Apache HTTP Server.</li>
+        <li>Deployed and tested a static HTML website.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Project Outcome</h2>
+      <p class="lead">
+        Successfully deployed a static website on an AWS
+        EC2 Linux instance. This project builds a foundation
+        for future work involving cloud storage, networking,
+        databases, serverless applications, and CI/CD.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      AWS Cloud & DevOps Internship 2026 · Codomax Module 02
+    </div>
+  </footer>
+</body>
+</html>
+EOF

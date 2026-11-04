@@ -81,8 +81,8 @@ Unlike Amazon EC2, Amazon S3 does not require an operating system or Apache web 
 
 ### Live Website
 
-http://codomax-module03-2026-041711547617-ap-southeast-2-an.s3-website-ap-southeast-2.amazonaws.com
-
+[http://codomax-module03-2026-041711547617-ap-southeast-2-an.s3-website-ap-southeast-2.amazonaws.com
+](https://main.d1mjnrmimmgoz7.amplifyapp.com/)
 ### Security Considerations
 
 - Used ACLs-disabled object ownership.
